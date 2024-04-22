@@ -1,9 +1,12 @@
 package com.crud.hibernate_demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class SchoolStudent {
@@ -13,13 +16,16 @@ public class SchoolStudent {
 	private String stud_name;
 	private String city_name;
 	private String school_name;
+	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "country")
+	private Address address;
 
-	public SchoolStudent(String stud_name, String city_name, String school_name) {
-
+	public SchoolStudent(String stud_name, String city_name, String school_name, Address address) {
+		super();
 		this.stud_name = stud_name;
 		this.city_name = city_name;
 		this.school_name = school_name;
-
+		this.address = address;
 	}
 
 	public SchoolStudent() {
@@ -58,10 +64,19 @@ public class SchoolStudent {
 		this.school_name = school_name;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "SchoolStudent [stud_id=" + stud_id + ", stud_name=" + stud_name + ", city_name=" + city_name
-				+ ", school_name=" + school_name + "]";
+				+ ", school_name=" + school_name + ", address=" + address + "]";
 	}
+	
 
 }
