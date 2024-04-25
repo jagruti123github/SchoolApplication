@@ -9,7 +9,7 @@ public interface SchoolDao {
 	public SchoolStudent getStudent();
 //	public void updateStudent(SchoolStudent schoolStudent);
 	public List<SchoolStudent> getAllStudents();
-	public void deleteStudent();
+	public void deleteStudent(int deleteId);
 	public void updateStudent(int updateId, String updatedName, String updatedCity, String updatedSchool,
 			String updatedCountry);
 

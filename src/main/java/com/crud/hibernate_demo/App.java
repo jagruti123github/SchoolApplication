@@ -6,34 +6,37 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.hibernate.SessionFactory;
+
 import com.crud.hibernate_demo.dao.SchoolDao;
 import com.crud.hibernate_demo.dao.SchoolDaoImp;
 import com.crud.hibernate_demo.entity.Address;
 import com.crud.hibernate_demo.entity.SchoolStudent;
+import com.crud.hibernate_demo.util.HibernateUtil;
 
 public class App {
 	public static void main(String[] args) throws IOException {
-//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//        System.out.println(sessionFactory);
-//        
-//        SchoolStudent schoolStudent =new SchoolStudent();
-//        schoolStudent.setStud_name("test 1");
-//        schoolStudent.setSchool_name("test school 1");
-//        schoolStudent.setCity_name("test city 1");
-//        Address addr = new Address();
-//        addr.setCountry("Australia");
-//        schoolStudent.setAddress(addr);
-//        
-//        SchoolStudent updateSchoolStudent =new SchoolStudent();
-//        updateSchoolStudent.setStud_name("test 1");
-//        updateSchoolStudent.setSchool_name("test school 1");
-//        updateSchoolStudent.setCity_name("test city 1");
-//        Address updateaddr = new Address();
-//        addr.setCountry("Australia");
-//        schoolStudent.setAddress(updateaddr);
-//        
-//        SchoolDaoImp schoolDaoImp=new SchoolDaoImp();
-//        schoolDaoImp.saveStudentData(schoolStudent);
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        System.out.println(sessionFactory);
+        
+        SchoolStudent schoolStudent =new SchoolStudent();
+        schoolStudent.setStud_name("test 1");
+        schoolStudent.setSchool_name("test school 1");
+        schoolStudent.setCity_name("test city 1");
+        Address addr = new Address();
+        addr.setCountry("Australia");
+        schoolStudent.setAddress(addr);
+        
+        SchoolStudent updateSchoolStudent =new SchoolStudent();
+        updateSchoolStudent.setStud_name("test 1");
+        updateSchoolStudent.setSchool_name("test school 1");
+        updateSchoolStudent.setCity_name("test city 1");
+        Address updateaddr = new Address();
+        addr.setCountry("Australia");
+        schoolStudent.setAddress(updateaddr);
+        
+        SchoolDaoImp schoolDaoImp=new SchoolDaoImp();
+        schoolDaoImp.saveStudentData(schoolStudent);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 		SchoolDao schoolDao = new SchoolDaoImp(); // Instantiate your implementation of SchoolDao
@@ -89,11 +92,11 @@ public class App {
 			case 3:
 				// Delete
 				System.out.println("Enter student ID to delete:");
-				// int deleteId = scanner.nextInt();
+				int deleteId = Integer.parseInt(reader.readLine());
 
 				// Call the delete method
-				// schoolDao.deleteStudent(deleteId);
-				// System.out.println("Student data deleted successfully.");
+				 schoolDao.deleteStudent(deleteId);
+				 System.out.println("Student data deleted successfully.");
 				break;
 			case 4:
 				// Retrieve all

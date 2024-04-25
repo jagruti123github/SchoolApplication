@@ -16,7 +16,7 @@ public class SchoolStudent {
 	private String stud_name;
 	private String city_name;
 	private String school_name;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
 //	@JoinColumn(name = "country")
 	private Address address;
 

@@ -93,8 +93,24 @@ public class SchoolDaoImp implements SchoolDao {
 	}
 
 	@Override
-	public void deleteStudent() {
-		// TODO Auto-generated method stub
+	public void deleteStudent(int deleteId) {
+		Transaction transaction = null;
+		try (Session session=HibernateUtil.getSessionFactory().openSession()){
+			transaction=session.beginTransaction();
+			 SchoolStudent studentToDelete = session.get(SchoolStudent.class, deleteId);
+			 if (studentToDelete != null) {
+				 session.remove(studentToDelete);
+				 transaction.commit();
+				 logger.info("Delete Operation done successfully");
+			 }else {
+				 logger.warning("Student with ID " + deleteId + " not found.");
+			 }
+		}catch (Exception e) {
+			if(transaction!=null) {
+				transaction.rollback();
+				logger.warning("Exception occured while deleting students"+e);
+			}
+		}
 		
 	}
 
