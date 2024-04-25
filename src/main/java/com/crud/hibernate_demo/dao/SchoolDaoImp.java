@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import com.crud.hibernate_demo.entity.Address;
 import com.crud.hibernate_demo.entity.SchoolStudent;
 import com.crud.hibernate_demo.util.HibernateUtil;
+import com.google.protobuf.Struct;
 
 public class SchoolDaoImp implements SchoolDao {
 	
@@ -75,8 +76,20 @@ public class SchoolDaoImp implements SchoolDao {
 
 	@Override
 	public List<SchoolStudent> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
+		Transaction transaction=null;
+		List<SchoolStudent> students =null;
+		try (Session session=HibernateUtil.getSessionFactory().openSession()){
+			transaction=session.beginTransaction();
+			students = session.createQuery("from SchoolStudent",SchoolStudent.class).list();
+			transaction.commit();
+			logger.info("Retrival Operation done successfully");
+		} catch (Exception e) {
+			if(transaction!=null) {
+				transaction.rollback();
+				logger.warning("Exception occured while retriving all students"+e);
+			}
+		}
+		return students;
 	}
 
 	@Override
