@@ -6,7 +6,7 @@ import com.crud.hibernate_demo.entity.SchoolStudent;
 
 public interface SchoolDao {
 	public void saveStudentData(SchoolStudent schoolStudent);
-	public SchoolStudent getStudent();
+	public SchoolStudent getStudent(int retrieveId);
 //	public void updateStudent(SchoolStudent schoolStudent);
 	public List<SchoolStudent> getAllStudents();
 	public void deleteStudent();

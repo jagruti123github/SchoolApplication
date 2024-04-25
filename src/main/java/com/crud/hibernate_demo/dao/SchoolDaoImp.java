@@ -1,5 +1,6 @@
 package com.crud.hibernate_demo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,9 +34,21 @@ public class SchoolDaoImp implements SchoolDao {
 	}
 
 	@Override
-	public SchoolStudent getStudent() {
-		// TODO Auto-generated method stub
-		return null;
+	public SchoolStudent getStudent(int retrieveId) {
+		Transaction transaction=null;
+		SchoolStudent studentToGet = null;
+		 try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			 transaction = session.beginTransaction();
+		     studentToGet = session.get(SchoolStudent.class, retrieveId);
+		    	 transaction.commit();
+		         System.out.println("Student data displayed successfully.");
+		 }catch (Exception e) {
+		        if (transaction != null) {
+		        	transaction.rollback();
+		            logger.warning("Exception occurred while fetching details of school student.");
+		        }
+		 }
+		return studentToGet;
 	}
 
 	@Override
