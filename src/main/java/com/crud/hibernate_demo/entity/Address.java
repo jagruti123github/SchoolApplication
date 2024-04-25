@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 public class Address {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int addressId;
 //	@OneToOne
 	private String country;

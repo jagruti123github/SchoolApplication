@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class SchoolStudent {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int stud_id;
 	private String stud_name;
 	private String city_name;

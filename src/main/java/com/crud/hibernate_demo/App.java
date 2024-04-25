@@ -13,30 +13,10 @@ import com.crud.hibernate_demo.entity.SchoolStudent;
 
 public class App {
 	public static void main(String[] args) throws IOException {
-//        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-//        System.out.println(sessionFactory);
-//        
-//        SchoolStudent schoolStudent =new SchoolStudent();
-//        schoolStudent.setStud_name("test 1");
-//        schoolStudent.setSchool_name("test school 1");
-//        schoolStudent.setCity_name("test city 1");
-//        Address addr = new Address();
-//        addr.setCountry("Australia");
-//        schoolStudent.setAddress(addr);
-//        
-//        SchoolStudent updateSchoolStudent =new SchoolStudent();
-//        updateSchoolStudent.setStud_name("test 1");
-//        updateSchoolStudent.setSchool_name("test school 1");
-//        updateSchoolStudent.setCity_name("test city 1");
-//        Address updateaddr = new Address();
-//        addr.setCountry("Australia");
-//        schoolStudent.setAddress(updateaddr);
-//        
-//        SchoolDaoImp schoolDaoImp=new SchoolDaoImp();
-//        schoolDaoImp.saveStudentData(schoolStudent);
+
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-		SchoolDao schoolDao = new SchoolDaoImp(); // Instantiate your implementation of SchoolDao
+		SchoolDao schoolDao = new SchoolDaoImp(); 
 
 		while (true) {
 			System.out.println("Choose an operation:");
@@ -72,8 +52,10 @@ public class App {
 				break;
 			case 2:
 				// Update
-				System.out.println("Enter student ID to update:");
+				System.out.println("Enter student ID to update record:");
 				int updateId = Integer.parseInt(reader.readLine());
+				
+				if(schoolDao.studentExists(updateId)) {
 				System.out.println("Enter updated student name:");
 				String updatedName =reader.readLine();
 				System.out.println("Enter updated city name:");
@@ -82,9 +64,10 @@ public class App {
 				String updatedSchool = reader.readLine();
 				System.out.println("Enter updated country:");
 				String updatedCountry = reader.readLine();
-
 				schoolDao.updateStudent(updateId, updatedName, updatedCity, updatedSchool, updatedCountry);
-
+				}else {												    
+				    System.err.println("Resource Not Found for "+"School Student with ID " + updateId + " does not exist. Try again");
+				}
 				break;
 			case 3:
 				// Delete
