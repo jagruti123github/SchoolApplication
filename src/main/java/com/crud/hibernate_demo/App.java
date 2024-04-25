@@ -29,6 +29,6 @@ public class App
         schoolStudent.setAddress(addr);
         
         SchoolDaoImp schoolDaoImp=new SchoolDaoImp();
-        schoolDaoImp.saveStudentData(schoolStudent);
+       // schoolDaoImp.saveStudentData(schoolStudent);
     }
 }

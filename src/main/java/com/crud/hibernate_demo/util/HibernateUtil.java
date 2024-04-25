@@ -8,8 +8,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 
-import com.crud.hibernate_demo.entity.Address;
-import com.crud.hibernate_demo.entity.SchoolStudent;
+import com.crud.hibernate_demo.onetomany.Address;
+import com.crud.hibernate_demo.onetomany.SchoolStudent;
+
+
+
 // look into StandardServiceRegistryBuilder
 public class HibernateUtil {
 	private static SessionFactory sessionFactory;
@@ -18,7 +21,7 @@ public class HibernateUtil {
 			Configuration configuration = new Configuration();
 			Properties properties = new Properties();
 			properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-			properties.put(Environment.URL, "jdbc:mysql://localhost:3306/javapractise");
+			properties.put(Environment.URL, "jdbc:mysql://localhost:3306/schooldb");
 			properties.put(Environment.USER, "root");
 			properties.put(Environment.PASS, "Mysql@2238399");
 			properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
